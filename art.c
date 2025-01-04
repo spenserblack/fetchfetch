@@ -1,6 +1,6 @@
 #include "art.h"
 
-const char *art[ART_HEIGHT] = {
+const char art[ART_HEIGHT][ART_WIDTH] = {
 	" ______________________________________ ",
 	"|                                      |",
 	"|  >_                                  |",
