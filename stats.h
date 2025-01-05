@@ -11,7 +11,12 @@ typedef struct {
  */
 char* neofetch();
 
-#define STATS_SIZE 1
+/**
+ * Gets onefetch version information.
+ */
+char* onefetch();
+
+#define STATS_SIZE 2
 /**
  * Gets all stats.
  */
