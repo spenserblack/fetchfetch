@@ -98,7 +98,7 @@ char* onefetch() {
 }
 
 char* pfetch() {
-	// NOTE Version in the format "onefetch x.x.x"
+	// NOTE Version in the format "pfetch x.x.x"
 	char *out = app_version("pfetch --version");
 	return extract_named_version(out, "pfetch ");
 }
