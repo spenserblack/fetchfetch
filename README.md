@@ -31,3 +31,14 @@ $ fetchfetch
 [onefetch]: https://github.com/o2sh/onefetch
 [pfetch]: https://github.com/dylanaraps/pfetch
 [uwufetch]: https://github.com/ad-oliviero/uwufetch
+
+## Installation
+
+### Arch Linux
+
+[fetchfetch](https://aur.archlinux.org/packages/fetchfetch) is available as an AUR package.
+It can be installed using an AUR helper (e.g. paru):
+
+```console
+$ paru -S fetchfetch
+```
