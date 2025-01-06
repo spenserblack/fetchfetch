@@ -26,10 +26,14 @@
  */
 char* app_version(const char *command) {
 	FILE *fp;
+	char redirected_command[50];
 	// NOTE 50 should be more than enough space for version info.
 	char buffer[50];
 
-	fp = popen(command, "r");
+	strcpy(redirected_command, command);
+	strcat(redirected_command, " 2>/dev/null");
+
+	fp = popen(redirected_command, "r");
 	if (fp == NULL) {
 		return "Not installed";
 	}
