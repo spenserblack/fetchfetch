@@ -37,11 +37,16 @@ char* neofetch();
 char* onefetch();
 
 /**
+ * Gets pfetch version information.
+ */
+char* pfetch();
+
+/**
  * Gets UwUfetch version information.
  */
 char* uwufetch();
 
-#define STATS_SIZE 4
+#define STATS_SIZE 5
 /**
  * Gets all stats.
  */
