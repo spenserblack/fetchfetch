@@ -7,6 +7,11 @@ typedef struct {
 } FetchStat;
 
 /**
+ * Gets Fastfetch version information.
+ */
+char* fastfetch();
+
+/**
  * Gets Neofetch version information.
  */
 char* neofetch();
@@ -16,7 +21,7 @@ char* neofetch();
  */
 char* onefetch();
 
-#define STATS_SIZE 2
+#define STATS_SIZE 3
 /**
  * Gets all stats.
  */

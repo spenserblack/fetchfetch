@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "stats.h"
 
 /**
@@ -25,6 +26,13 @@ char* app_version(const char *command) {
 }
 
 /**
+ * Checks if a character is a boundary character.
+ */
+bool is_boundary(char c) {
+	return c == ' ' || c == '\n';
+}
+
+/**
  * Splits outputs in the format `"Appname x.y.z\n"` into `"x.y.z"`.
  */
 char* extract_named_version(const char *version_info) {
@@ -34,8 +42,14 @@ char* extract_named_version(const char *version_info) {
 
 	len = strlen(version_info);
 	for (start = 0; version_info[start] != ' ' && start < len; start++);
-	for (end = start; version_info[end] != '\n' && end < len; end++);
+	for (end = start + 1; end < len && !is_boundary(version_info[end]); end++);
 	return strndup(version_info + start + 1, end - start - 1);
+}
+
+char* fastfetch() {
+	// NOTE Version in the format "fastfetch x.x.x (ARCH)"
+	char *out = app_version("fastfetch --version");
+	return extract_named_version(out);
 }
 
 char* neofetch() {
@@ -52,9 +66,11 @@ char* onefetch() {
 
 FetchStat* get_stats() {
 	FetchStat *stats = malloc(STATS_SIZE * sizeof(FetchStat));
-	stats[0].label = "Neofetch";
-	stats[0].version = neofetch();
-	stats[1].label = "onefetch";
-	stats[1].version = onefetch();
+	stats[0].label = "Fastfetch";
+	stats[0].version = fastfetch();
+	stats[1].label = "Neofetch";
+	stats[1].version = neofetch();
+	stats[2].label = "onefetch";
+	stats[2].version = onefetch();
 	return stats;
 }
