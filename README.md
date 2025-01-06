@@ -23,7 +23,9 @@ $ fetchfetch
 * [Fastfetch][fastfetch]
 * [Neofetch][neofetch]
 * [onefetch][onefetch]
+* [UwUfetch][uwufetch]
 
 [fastfetch]: https://github.com/fastfetch-cli/fastfetch
 [neofetch]: https://github.com/dylanaraps/neofetch
-[onefetch]: https://github.com/o2sh/onefetch/
+[onefetch]: https://github.com/o2sh/onefetch
+[uwufetch]: https://github.com/ad-oliviero/uwufetch
