@@ -42,3 +42,11 @@ It can be installed using an AUR helper (e.g. paru):
 ```console
 $ paru -S fetchfetch
 ```
+
+### From source
+
+```shell
+git clone https://github.com/spenserblack/fetchfetch
+cd fetchfetch
+sudo make install
+```
