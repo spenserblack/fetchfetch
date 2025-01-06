@@ -61,37 +61,46 @@ bool is_boundary(char c) {
 /**
  * Splits outputs in the format `"Appname x.y.z\n"` into `"x.y.z"`.
  */
-const char* extract_named_version(const char *version_info) {
+const char* extract_named_version(const char *version_info, const char *prefix) {
 	int start;
 	int end;
 	int len;
+	int prefix_len = strlen(prefix);
 
 	if (version_info == app_version_fallback) {
 		return version_info;
 	}
 
 	len = strlen(version_info);
-	for (start = 0; version_info[start] != ' ' && start < len; start++);
-	for (end = start + 1; end < len && !is_boundary(version_info[end]); end++);
-	return strndup(version_info + start + 1, end - start - 1);
+	for (start = 0; version_info[start] != '\0' && strncmp(version_info + start, prefix, prefix_len) != 0; start++);
+	if (start >= len) return NULL; // Prefix not found
+	start += prefix_len;
+	for (end = start; end < len && !is_boundary(version_info[end]); end++);
+	return strndup(version_info + start, end - start);
 }
 
 const char* fastfetch() {
 	// NOTE Version in the format "fastfetch x.x.x (ARCH)"
 	char *out = app_version("fastfetch --version");
-	return extract_named_version(out);
+	return extract_named_version(out, "fastfetch ");
 }
 
 const char* neofetch() {
 	// NOTE Version in the format "Neofetch x.x.x"
 	char *out = app_version("neofetch --version");
-	return extract_named_version(out);
+	return extract_named_version(out, "Neofetch ");
 }
 
 const char* onefetch() {
 	// NOTE Version in the format "onefetch x.x.x"
 	char *out = app_version("onefetch --version");
-	return extract_named_version(out);
+	return extract_named_version(out, "onefetch ");
+}
+
+char* uwufetch() {
+	// NOTE Version in the format "UwUfetch version x.x"
+	char *out = app_version("uwufetch --version");
+	return extract_named_version(out, "UwUfetch version ");
 }
 
 FetchStat* get_stats() {
@@ -102,5 +111,7 @@ FetchStat* get_stats() {
 	stats[1].version = neofetch();
 	stats[2].label = "onefetch";
 	stats[2].version = onefetch();
+	stats[3].label = "UwUfetch";
+	stats[3].version = uwufetch();
 	return stats;
 }

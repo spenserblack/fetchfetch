@@ -36,7 +36,12 @@ const char* neofetch();
  */
 const char* onefetch();
 
-#define STATS_SIZE 3
+/**
+ * Gets UwUfetch version information.
+ */
+char* uwufetch();
+
+#define STATS_SIZE 4
 /**
  * Gets all stats.
  */
