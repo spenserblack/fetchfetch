@@ -36,7 +36,7 @@ $ fetchfetch
 
 ### Arch Linux
 
-[fetchfetch](https://aur.archlinux.org/packages/fetchfetch) is available as an AUR package.
+fetchfetch is available as [an AUR package][fastfetch-aur].
 It can be installed using an AUR helper (e.g. paru):
 
 ```console
@@ -50,3 +50,5 @@ git clone https://github.com/spenserblack/fetchfetch
 cd fetchfetch
 sudo make install
 ```
+
+[fastfetch-aur]: https://aur.archlinux.org/packages/fetchfetch
