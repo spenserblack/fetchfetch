@@ -97,6 +97,12 @@ char* onefetch() {
 	return extract_named_version(out, "onefetch ");
 }
 
+char* pfetch() {
+	// NOTE Version in the format "onefetch x.x.x"
+	char *out = app_version("pfetch --version");
+	return extract_named_version(out, "pfetch ");
+}
+
 char* uwufetch() {
 	// NOTE Version in the format "UwUfetch version x.x"
 	char *out = app_version("uwufetch --version");
@@ -111,7 +117,9 @@ FetchStat* get_stats() {
 	stats[1].version = neofetch();
 	stats[2].label = "onefetch";
 	stats[2].version = onefetch();
-	stats[3].label = "UwUfetch";
-	stats[3].version = uwufetch();
+	stats[3].label = "pfetch";
+	stats[3].version = pfetch();
+	stats[4].label = "UwUfetch";
+	stats[4].version = uwufetch();
 	return stats;
 }
