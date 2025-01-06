@@ -24,17 +24,17 @@ typedef struct {
 /**
  * Gets Fastfetch version information.
  */
-const char* fastfetch();
+char* fastfetch();
 
 /**
  * Gets Neofetch version information.
  */
-const char* neofetch();
+char* neofetch();
 
 /**
  * Gets onefetch version information.
  */
-const char* onefetch();
+char* onefetch();
 
 /**
  * Gets UwUfetch version information.
