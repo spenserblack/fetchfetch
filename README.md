@@ -39,8 +39,8 @@ $ fetchfetch
 fetchfetch is available as [an AUR package][fastfetch-aur].
 It can be installed using an AUR helper (e.g. paru):
 
-```console
-$ paru -S fetchfetch
+```shell
+paru -S fetchfetch
 ```
 
 ### From source
