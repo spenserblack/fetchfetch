@@ -19,14 +19,14 @@
 #include <stdbool.h>
 #include "stats.h"
 
-const char *app_version_fallback = "Not installed";
+char *app_version_fallback = "Not installed";
 
 /**
  * Calls a shell command and returns the output as a string.
  *
  * Falls back to "Not installed" if the command fails.
  */
-const char* app_version(const char *command) {
+char* app_version(const char *command) {
 	FILE *fp;
 	char redirected_command[50];
 	// NOTE 50 should be more than enough space for version info.
@@ -61,13 +61,13 @@ bool is_boundary(char c) {
 /**
  * Splits outputs in the format `"Appname x.y.z\n"` into `"x.y.z"`.
  */
-const char* extract_named_version(const char *version_info) {
+char* extract_named_version(const char *version_info) {
 	int start;
 	int end;
 	int len;
 
 	if (version_info == app_version_fallback) {
-		return version_info;
+		return app_version_fallback;
 	}
 
 	len = strlen(version_info);
@@ -76,19 +76,19 @@ const char* extract_named_version(const char *version_info) {
 	return strndup(version_info + start + 1, end - start - 1);
 }
 
-const char* fastfetch() {
+char* fastfetch() {
 	// NOTE Version in the format "fastfetch x.x.x (ARCH)"
 	char *out = app_version("fastfetch --version");
 	return extract_named_version(out);
 }
 
-const char* neofetch() {
+char* neofetch() {
 	// NOTE Version in the format "Neofetch x.x.x"
 	char *out = app_version("neofetch --version");
 	return extract_named_version(out);
 }
 
-const char* onefetch() {
+char* onefetch() {
 	// NOTE Version in the format "onefetch x.x.x"
 	char *out = app_version("onefetch --version");
 	return extract_named_version(out);
