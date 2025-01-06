@@ -6,10 +6,14 @@ Fetch information about your `*fetch` tools.
 
 ```console
 $ fetchfetch
- ____________________
-|                    | fastfetch: 2.33.0
-| >_                 | onefetch: 2.22.0
-|                    | Neofetch: Not installed
-|                    |
-|____________________|
+ ______________________________________
+|                                      | Fastfetch: 2.33.0
+|  >_                                  | Neofetch: 7.1.0
+|                                      | onefetch: 2.22.0
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|                                      |
+|______________________________________|
 ```
