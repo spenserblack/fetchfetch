@@ -19,27 +19,34 @@
 #include <stdbool.h>
 #include "stats.h"
 
+const char *app_version_fallback = "Not installed";
+
 /**
  * Calls a shell command and returns the output as a string.
  *
  * Falls back to "Not installed" if the command fails.
  */
-char* app_version(const char *command) {
+const char* app_version(const char *command) {
 	FILE *fp;
 	char redirected_command[50];
 	// NOTE 50 should be more than enough space for version info.
 	char buffer[50];
+	bool failed_to_read;
 
 	strcpy(redirected_command, command);
 	strcat(redirected_command, " 2>/dev/null");
 
 	fp = popen(redirected_command, "r");
 	if (fp == NULL) {
-		return "Not installed";
+		return app_version_fallback;
 	}
 
-	fgets(buffer, sizeof(buffer), fp);
+	failed_to_read = fgets(buffer, sizeof(buffer), fp) == NULL;
 	pclose(fp);
+
+	if (failed_to_read || strlen(buffer) == 0) {
+		return app_version_fallback;
+	}
 
 	return strdup(buffer);
 }
@@ -54,10 +61,14 @@ bool is_boundary(char c) {
 /**
  * Splits outputs in the format `"Appname x.y.z\n"` into `"x.y.z"`.
  */
-char* extract_named_version(const char *version_info) {
+const char* extract_named_version(const char *version_info) {
 	int start;
 	int end;
 	int len;
+
+	if (version_info == app_version_fallback) {
+		return version_info;
+	}
 
 	len = strlen(version_info);
 	for (start = 0; version_info[start] != ' ' && start < len; start++);
@@ -65,19 +76,19 @@ char* extract_named_version(const char *version_info) {
 	return strndup(version_info + start + 1, end - start - 1);
 }
 
-char* fastfetch() {
+const char* fastfetch() {
 	// NOTE Version in the format "fastfetch x.x.x (ARCH)"
 	char *out = app_version("fastfetch --version");
 	return extract_named_version(out);
 }
 
-char* neofetch() {
+const char* neofetch() {
 	// NOTE Version in the format "Neofetch x.x.x"
 	char *out = app_version("neofetch --version");
 	return extract_named_version(out);
 }
 
-char* onefetch() {
+const char* onefetch() {
 	// NOTE Version in the format "onefetch x.x.x"
 	char *out = app_version("onefetch --version");
 	return extract_named_version(out);
