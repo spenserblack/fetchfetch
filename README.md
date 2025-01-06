@@ -17,3 +17,13 @@ $ fetchfetch
 |                                      |
 |______________________________________|
 ```
+
+## Supported `*fetch` tools
+
+* [Fastfetch][fastfetch]
+* [Neofetch][neofetch]
+* [onefetch][onefetch]
+
+[fastfetch]: https://github.com/fastfetch-cli/fastfetch
+[neofetch]: https://github.com/dylanaraps/neofetch
+[onefetch]: https://github.com/o2sh/onefetch/
