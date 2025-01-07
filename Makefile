@@ -4,7 +4,7 @@ fetchfetch: art.o stats.o fetchfetch.c
 art.o: art.c art.h
 	$(CC) -c -o art.o art.c
 
-stats.o: stats.c stats.h
+stats.o: stats.c stats.h version.h
 	$(CC) -c -o stats.o stats.c
 
 .PHONY: run
