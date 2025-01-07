@@ -34,6 +34,8 @@ $ fetchfetch
 
 ## Installation
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/fetchfetch.svg)](https://repology.org/project/fetchfetch/versions)
+
 ### Arch Linux
 
 fetchfetch is available as [an AUR package][fastfetch-aur].
