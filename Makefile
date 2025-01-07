@@ -1,5 +1,8 @@
-fetchfetch: art.o stats.o fetchfetch.c
-	$(CC) -o fetchfetch art.o stats.o fetchfetch.c
+fetchfetch: art.o args.o stats.o fetchfetch.c
+	$(CC) -o fetchfetch art.o args.o stats.o fetchfetch.c
+
+args.o: args.c args.h
+	$(CC) -c -o args.o args.c
 
 art.o: art.c art.h
 	$(CC) -c -o art.o art.c
