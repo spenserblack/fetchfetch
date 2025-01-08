@@ -1,11 +1,17 @@
-fetchfetch: art.o stats.o fetchfetch.c
-	$(CC) -o fetchfetch art.o stats.o fetchfetch.c
+fetchfetch: art.o args.o stats.o version.o fetchfetch.c
+	$(CC) -o fetchfetch art.o args.o stats.o version.o fetchfetch.c
+
+args.o: args.c args.h
+	$(CC) -c -o args.o args.c
 
 art.o: art.c art.h
 	$(CC) -c -o art.o art.c
 
-stats.o: stats.c stats.h
+stats.o: stats.c stats.h version.c version.h
 	$(CC) -c -o stats.o stats.c
+
+version.o: version.c version.h
+	$(CC) -c -o version.o version.c
 
 .PHONY: run
 run: fetchfetch

@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "stats.h"
+#include "version.h"
 
 char *app_version_fallback = "Not installed";
 
@@ -113,13 +114,15 @@ FetchStat* get_stats() {
 	FetchStat *stats = malloc(STATS_SIZE * sizeof(FetchStat));
 	stats[0].label = "Fastfetch";
 	stats[0].version = fastfetch();
-	stats[1].label = "Neofetch";
-	stats[1].version = neofetch();
-	stats[2].label = "onefetch";
-	stats[2].version = onefetch();
-	stats[3].label = "pfetch";
-	stats[3].version = pfetch();
-	stats[4].label = "UwUfetch";
-	stats[4].version = uwufetch();
+	stats[1].label = "fetchfetch";
+	stats[1].version = version;
+	stats[2].label = "Neofetch";
+	stats[2].version = neofetch();
+	stats[3].label = "onefetch";
+	stats[3].version = onefetch();
+	stats[4].label = "pfetch";
+	stats[4].version = pfetch();
+	stats[5].label = "UwUfetch";
+	stats[5].version = uwufetch();
 	return stats;
 }

@@ -13,43 +13,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef FETCH_FETCH_STATS_H
-#define FETCH_FETCH_STATS_H
+#ifndef FETCH_FETCH_ARGS_H
+#define FETCH_FETCH_ARGS_H
+#include <stdbool.h>
 
-typedef struct {
-	const char *label;
-	const char *version;
-} FetchStat;
+extern bool print_help;
+extern bool print_version;
+extern const char *help_message;
 
-/**
- * Gets Fastfetch version information.
- */
-char* fastfetch();
-
-/**
- * Gets Neofetch version information.
- */
-char* neofetch();
-
-/**
- * Gets onefetch version information.
- */
-char* onefetch();
-
-/**
- * Gets pfetch version information.
- */
-char* pfetch();
-
-/**
- * Gets UwUfetch version information.
- */
-char* uwufetch();
-
-#define STATS_SIZE 6
-/**
- * Gets all stats.
- */
-FetchStat* get_stats();
+void parse_args(int argc, char **argv);
 
 #endif

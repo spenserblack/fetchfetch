@@ -13,43 +13,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef FETCH_FETCH_STATS_H
-#define FETCH_FETCH_STATS_H
+#include <stdbool.h>
+#include <string.h>
+#include "args.h"
 
-typedef struct {
-	const char *label;
-	const char *version;
-} FetchStat;
+bool print_help = false;
+bool print_version = false;
 
-/**
- * Gets Fastfetch version information.
- */
-char* fastfetch();
+void parse_args(int argc, char **argv) {
+	for (int i = 1; i < argc; i++) {
+		if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+			print_help = true;
+		} else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
+			print_version = true;
+		}
+	}
+}
 
-/**
- * Gets Neofetch version information.
- */
-char* neofetch();
-
-/**
- * Gets onefetch version information.
- */
-char* onefetch();
-
-/**
- * Gets pfetch version information.
- */
-char* pfetch();
-
-/**
- * Gets UwUfetch version information.
- */
-char* uwufetch();
-
-#define STATS_SIZE 6
-/**
- * Gets all stats.
- */
-FetchStat* get_stats();
-
-#endif
+const char *help_message = 	"Usage: fetchfetch [OPTIONS...]\n"
+							"Fetch the stats of your *fetch tools\n"
+							"\n"
+							"Options:\n"
+							"  -h, --help     Print this message and exit\n"
+							"  -v, --version  Print the version and exit\n";

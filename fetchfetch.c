@@ -14,11 +14,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include <stdio.h>
+#include "args.h"
 #include "art.h"
 #include "stats.h"
+#include "version.h"
 
 int main(int argc, char *argv[]) {
-	const FetchStat *stats = get_stats();
+	FetchStat *stats;
+	parse_args(argc, argv);
+
+	if (print_help) {
+		printf("%s", help_message);
+		return 0;
+	}
+	if (print_version) {
+		printf("fetchfetch %s\n", version);
+		return 0;
+	}
+
+	stats = get_stats();
 	for (int line_index = 0; line_index < ART_HEIGHT || line_index < STATS_SIZE; line_index++) {
 		if (line_index < ART_HEIGHT) {
 			for (int col_index = 0; col_index < ART_WIDTH; col_index++) {
