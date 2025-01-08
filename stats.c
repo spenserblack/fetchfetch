@@ -115,7 +115,7 @@ FetchStat* get_stats() {
 	stats[0].label = "Fastfetch";
 	stats[0].version = fastfetch();
 	stats[1].label = "fetchfetch";
-	stats[1].version = FETCHFETCH_VERSION;
+	stats[1].version = version;
 	stats[2].label = "Neofetch";
 	stats[2].version = neofetch();
 	stats[3].label = "onefetch";

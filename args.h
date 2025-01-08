@@ -17,6 +17,7 @@
 #define FETCH_FETCH_ARGS_H
 #include <stdbool.h>
 
+extern bool print_help;
 extern bool print_version;
 
 void parse_args(int argc, char **argv);

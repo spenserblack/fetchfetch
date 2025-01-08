@@ -16,6 +16,6 @@
 #ifndef FETCH_FETCH_VERSION_H
 #define FETCH_FETCH_VERSION_H
 
-#define FETCHFETCH_VERSION "1.0.1"
+extern const char *version;
 
 #endif

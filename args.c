@@ -17,6 +17,7 @@
 #include <string.h>
 #include "args.h"
 
+bool print_help = false;
 bool print_version = false;
 
 void parse_args(int argc, char **argv) {

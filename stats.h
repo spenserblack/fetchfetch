@@ -17,8 +17,8 @@
 #define FETCH_FETCH_STATS_H
 
 typedef struct {
-	char *label;
-	char *version;
+	const char *label;
+	const char *version;
 } FetchStat;
 
 /**
