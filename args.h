@@ -19,6 +19,7 @@
 
 extern bool print_help;
 extern bool print_version;
+extern const char *help_message;
 
 void parse_args(int argc, char **argv);
 

@@ -22,8 +22,17 @@ bool print_version = false;
 
 void parse_args(int argc, char **argv) {
 	for (int i = 1; i < argc; i++) {
-		if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
+		if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+			print_help = true;
+		} else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
 			print_version = true;
 		}
 	}
 }
+
+const char *help_message = 	"Usage: fetchfetch [OPTIONS...]\n"
+							"Fetch the stats of your *fetch tools\n"
+							"\n"
+							"Options:\n"
+							"  -h, --help     Print this message and exit\n"
+							"  -v, --version  Print the version and exit\n";

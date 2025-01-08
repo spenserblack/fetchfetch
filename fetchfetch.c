@@ -23,6 +23,10 @@ int main(int argc, char *argv[]) {
 	FetchStat *stats;
 	parse_args(argc, argv);
 
+	if (print_help) {
+		printf("%s", help_message);
+		return 0;
+	}
 	if (print_version) {
 		printf("fetchfetch %s\n", version);
 		return 0;
