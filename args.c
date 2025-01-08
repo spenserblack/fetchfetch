@@ -14,25 +14,45 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "args.h"
 
+int right_pad = -1;
 bool print_help = false;
 bool print_version = false;
 
-void parse_args(int argc, char **argv) {
+bool parse_args(int argc, char **argv) {
+	char *arg;
+	char *end;
 	for (int i = 1; i < argc; i++) {
-		if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+		arg = argv[i];
+		if (strcmp(arg, "-p") == 0 || strcmp(arg, "--pad") == 0) {
+			if (i == argc - 1) {
+				fprintf(stderr, "--pad takes 1 argument\n");
+				return false;
+			}
+			arg = argv[++i];
+			// NOTE We're ignoring overflows (the safety check isn't a priority for this tool).
+			right_pad = (int)strtol(arg, &end, 10);
+			if (end == arg || right_pad < 0) {
+				fprintf(stderr, "--pad expected a non-negative integer, got %s\n", arg);
+				return false;
+			}
+		} else if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {
 			print_help = true;
-		} else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
+		} else if (strcmp(arg, "-v") == 0 || strcmp(arg, "--version") == 0) {
 			print_version = true;
 		}
 	}
+	return true;
 }
 
 const char *help_message = 	"Usage: fetchfetch [OPTIONS...]\n"
 							"Fetch the stats of your *fetch tools\n"
 							"\n"
 							"Options:\n"
+							"  -p, --pad N    Right-pad labels by N spaces to align values\n"
 							"  -h, --help     Print this message and exit\n"
 							"  -v, --version  Print the version and exit\n";

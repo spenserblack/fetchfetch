@@ -17,10 +17,15 @@
 #define FETCH_FETCH_ARGS_H
 #include <stdbool.h>
 
+extern int right_pad;
 extern bool print_help;
 extern bool print_version;
 extern const char *help_message;
 
-void parse_args(int argc, char **argv);
+/**
+ * Parses arguments. Returns true if parsing succeeded (and execution should continue),
+ * false otherwise.
+ */
+bool parse_args(int argc, char **argv);
 
 #endif
