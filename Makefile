@@ -13,6 +13,10 @@ stats.o: stats.c stats.h version.c version.h
 version.o: version.c version.h
 	$(CC) -c -o version.o version.c
 
+.PHONY: format
+format:
+	clang-format -i *.c *.h
+
 .PHONY: run
 run: fetchfetch
 	./fetchfetch
