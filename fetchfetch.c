@@ -13,7 +13,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+#include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include "args.h"
 #include "art.h"
 #include "stats.h"
@@ -21,8 +23,14 @@
 
 int main(int argc, char *argv[]) {
 	FetchStat *stats;
-	parse_args(argc, argv);
+	bool ok = parse_args(argc, argv);
+	const char *label;
+	int label_len;
+	int pad_iter;
 
+	if (!ok) {
+		return 1;
+	}
 	if (print_help) {
 		printf("%s", help_message);
 		return 0;
@@ -44,7 +52,16 @@ int main(int argc, char *argv[]) {
 
 		// NOTE We skip a line because it looks a little better.
 		if (line_index != 0 && line_index <= STATS_SIZE) {
-			printf(" %s: %s", stats[line_index - 1].label, stats[line_index - 1].version);
+			printf(" %s:", label = stats[line_index - 1].label);
+			if (right_pad != -1) {
+				label_len = strlen(label);
+				for (pad_iter = label_len; pad_iter < right_pad; ++pad_iter) {
+					putchar(' ');
+				}
+			} else {
+				putchar(' ');
+			}
+			printf("%s", stats[line_index - 1].version);
 		}
 		printf("\n");
 	}
