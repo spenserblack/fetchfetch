@@ -1,5 +1,7 @@
 # `fetchfetch`
 
+[![CI](https://github.com/spenserblack/fetchfetch/actions/workflows/ci.yml/badge.svg)](https://github.com/spenserblack/fetchfetch/actions/workflows/ci.yml)
+
 Fetch information about your `*fetch` tools.
 
 ## Example
