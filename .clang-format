@@ -1,0 +1,15 @@
+---
+Language: Cpp
+AlignAfterOpenBracket: BlockIndent
+BinPackArguments: false  # NOTE: Conflicts with trailing commas
+BreakBeforeBraces: Attach
+BreakStringLiterals: true
+ColumnLimit: 88
+IndentWidth: 4
+InsertBraces: true
+InsertNewlineAtEOF: true
+InsertTrailingCommas: Wrapped
+LineEnding: LF
+PointerAlignment: Right
+TabWidth: 4
+UseTab: Always

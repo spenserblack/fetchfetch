@@ -13,11 +13,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+#include "args.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "args.h"
 
 int right_pad = -1;
 bool print_help = false;
@@ -34,7 +34,8 @@ bool parse_args(int argc, char **argv) {
 				return false;
 			}
 			arg = argv[++i];
-			// NOTE We're ignoring overflows (the safety check isn't a priority for this tool).
+			// NOTE We're ignoring overflows (the safety check isn't a priority for this
+			// tool).
 			right_pad = (int)strtol(arg, &end, 10);
 			if (end == arg || right_pad < 0) {
 				fprintf(stderr, "--pad expected a non-negative integer, got %s\n", arg);
@@ -49,10 +50,11 @@ bool parse_args(int argc, char **argv) {
 	return true;
 }
 
-const char *help_message = 	"Usage: fetchfetch [OPTIONS...]\n"
-							"Fetch the stats of your *fetch tools\n"
-							"\n"
-							"Options:\n"
-							"  -p, --pad N    Right-pad labels by N spaces to align values\n"
-							"  -h, --help     Print this message and exit\n"
-							"  -v, --version  Print the version and exit\n";
+const char *help_message =
+	"Usage: fetchfetch [OPTIONS...]\n"
+	"Fetch the stats of your *fetch tools\n"
+	"\n"
+	"Options:\n"
+	"  -p, --pad N    Right-pad labels by N spaces to align values\n"
+	"  -h, --help     Print this message and exit\n"
+	"  -v, --version  Print the version and exit\n";

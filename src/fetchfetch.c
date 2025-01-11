@@ -13,13 +13,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
 #include "args.h"
 #include "art.h"
 #include "stats.h"
 #include "version.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
 	FetchStat *stats;
@@ -41,7 +41,8 @@ int main(int argc, char *argv[]) {
 	}
 
 	stats = get_stats();
-	for (int line_index = 0; line_index < ART_HEIGHT || line_index < STATS_SIZE; line_index++) {
+	for (int line_index = 0; line_index < ART_HEIGHT || line_index < STATS_SIZE;
+		 line_index++) {
 		if (line_index < ART_HEIGHT) {
 			for (int col_index = 0; col_index < ART_WIDTH; col_index++) {
 				putchar(art[line_index][col_index]);

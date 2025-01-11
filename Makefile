@@ -1,22 +1,27 @@
-fetchfetch: art.o args.o stats.o version.o fetchfetch.c
-	$(CC) -o fetchfetch art.o args.o stats.o version.o fetchfetch.c
+bin/fetchfetch: bin/art.o bin/args.o bin/stats.o bin/version.o src/fetchfetch.c
+	$(CC) -o bin/fetchfetch bin/art.o bin/args.o bin/stats.o bin/version.o src/fetchfetch.c
 
-args.o: args.c args.h
-	$(CC) -c -o args.o args.c
 
-art.o: art.c art.h
-	$(CC) -c -o art.o art.c
+bin/args.o: src/args.c src/args.h
+	$(CC) -c -o bin/args.o src/args.c
 
-stats.o: stats.c stats.h version.c version.h
-	$(CC) -c -o stats.o stats.c
+bin/art.o: src/art.c src/art.h
+	$(CC) -c -o bin/art.o src/art.c
 
-version.o: version.c version.h
-	$(CC) -c -o version.o version.c
+bin/stats.o: src/stats.c src/stats.h src/version.c src/version.h
+	$(CC) -c -o bin/stats.o src/stats.c
+
+bin/version.o: src/version.c src/version.h
+	$(CC) -c -o bin/version.o src/version.c
+
+.PHONY: format
+format:
+	clang-format -i src/*
 
 .PHONY: run
-run: fetchfetch
-	./fetchfetch
+run: bin/fetchfetch
+	./bin/fetchfetch
 
 .PHONY: install
 install: fetchfetch
-	cp ./fetchfetch /usr/local/bin/fetchfetch
+	cp ./bin/fetchfetch /usr/local/bin/fetchfetch
