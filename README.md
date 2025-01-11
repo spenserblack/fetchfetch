@@ -10,11 +10,11 @@ Fetch information about your `*fetch` tools.
 $ fetchfetch
  ______________________________________
 |                                      | Fastfetch: 2.33.0
-|  >_                                  | Neofetch: 7.1.0
+|  >_                                  | fetchfetch: 1.1.0
+|                                      | Neofetch: 7.1.0
 |                                      | onefetch: 2.22.0
-|                                      |
-|                                      |
-|                                      |
+|                                      | pfetch: Not installed
+|                                      | UwUfetch: Not installed
 |                                      |
 |                                      |
 |______________________________________|
