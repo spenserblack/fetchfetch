@@ -24,32 +24,32 @@ typedef struct {
 /**
  * Gets Fastfetch version information.
  */
-char* fastfetch();
+char *fastfetch();
 
 /**
  * Gets Neofetch version information.
  */
-char* neofetch();
+char *neofetch();
 
 /**
  * Gets onefetch version information.
  */
-char* onefetch();
+char *onefetch();
 
 /**
  * Gets pfetch version information.
  */
-char* pfetch();
+char *pfetch();
 
 /**
  * Gets UwUfetch version information.
  */
-char* uwufetch();
+char *uwufetch();
 
 #define STATS_SIZE 6
 /**
  * Gets all stats.
  */
-FetchStat* get_stats();
+FetchStat *get_stats();
 
 #endif

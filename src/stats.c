@@ -13,12 +13,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+#include "stats.h"
+#include "version.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include "stats.h"
-#include "version.h"
 
 char *app_version_fallback = "Not installed";
 
@@ -27,7 +27,7 @@ char *app_version_fallback = "Not installed";
  *
  * Falls back to "Not installed" if the command fails.
  */
-char* app_version(const char *command) {
+char *app_version(const char *command) {
 	FILE *fp;
 	char redirected_command[50];
 	// NOTE 50 should be more than enough space for version info.
@@ -55,14 +55,12 @@ char* app_version(const char *command) {
 /**
  * Checks if a character is a boundary character.
  */
-bool is_boundary(char c) {
-	return c == ' ' || c == '\n';
-}
+bool is_boundary(char c) { return c == ' ' || c == '\n'; }
 
 /**
  * Splits outputs in the format `"Appname x.y.z\n"` into `"x.y.z"`.
  */
-char* extract_named_version(const char *version_info, const char *prefix) {
+char *extract_named_version(const char *version_info, const char *prefix) {
 	int start;
 	int end;
 	int len;
@@ -73,44 +71,50 @@ char* extract_named_version(const char *version_info, const char *prefix) {
 	}
 
 	len = strlen(version_info);
-	for (start = 0; version_info[start] != '\0' && strncmp(version_info + start, prefix, prefix_len) != 0; start++);
-	if (start >= len) return NULL; // Prefix not found
+	for (start = 0; version_info[start] != '\0' &&
+					strncmp(version_info + start, prefix, prefix_len) != 0;
+		 start++)
+		;
+	if (start >= len) {
+		return NULL; // Prefix not found
+	}
 	start += prefix_len;
-	for (end = start; end < len && !is_boundary(version_info[end]); end++);
+	for (end = start; end < len && !is_boundary(version_info[end]); end++)
+		;
 	return strndup(version_info + start, end - start);
 }
 
-char* fastfetch() {
+char *fastfetch() {
 	// NOTE Version in the format "fastfetch x.x.x (ARCH)"
 	char *out = app_version("fastfetch --version");
 	return extract_named_version(out, "fastfetch ");
 }
 
-char* neofetch() {
+char *neofetch() {
 	// NOTE Version in the format "Neofetch x.x.x"
 	char *out = app_version("neofetch --version");
 	return extract_named_version(out, "Neofetch ");
 }
 
-char* onefetch() {
+char *onefetch() {
 	// NOTE Version in the format "onefetch x.x.x"
 	char *out = app_version("onefetch --version");
 	return extract_named_version(out, "onefetch ");
 }
 
-char* pfetch() {
+char *pfetch() {
 	// NOTE Version in the format "pfetch x.x.x"
 	char *out = app_version("pfetch --version");
 	return extract_named_version(out, "pfetch ");
 }
 
-char* uwufetch() {
+char *uwufetch() {
 	// NOTE Version in the format "UwUfetch version x.x"
 	char *out = app_version("uwufetch --version");
 	return extract_named_version(out, "UwUfetch version ");
 }
 
-FetchStat* get_stats() {
+FetchStat *get_stats() {
 	FetchStat *stats = malloc(STATS_SIZE * sizeof(FetchStat));
 	stats[0].label = "Fastfetch";
 	stats[0].version = fastfetch();
