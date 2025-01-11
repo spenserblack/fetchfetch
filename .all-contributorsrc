@@ -1,0 +1,12 @@
+{
+  "projectName": "fetchfetch",
+  "projectOwner": "spenserblack",
+  "files": [
+    "THANKS.md"
+  ],
+  "commitConvention": "atom",
+  "contributorsSortAlphabetically": true,
+  "contributors": [],
+  "contributorsPerLine": 7,
+  "commitType": "docs"
+}
