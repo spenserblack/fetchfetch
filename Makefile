@@ -23,5 +23,5 @@ run: bin/fetchfetch
 	./bin/fetchfetch
 
 .PHONY: install
-install: fetchfetch
+install: bin/fetchfetch
 	cp ./bin/fetchfetch /usr/local/bin/fetchfetch
