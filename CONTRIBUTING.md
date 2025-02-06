@@ -37,7 +37,7 @@ rem cmd.exe
 fetchfetch.exe | clip.exe
 ```
 
-```
+```powershell
 # PowerShell
 fetchfetch.exe | Set-Clipboard
 ```
