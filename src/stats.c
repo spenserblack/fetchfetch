@@ -114,6 +114,12 @@ char *uwufetch() {
 	return extract_named_version(out, "UwUfetch version ");
 }
 
+char *screenfetch() {
+	// NOTE Version in the format "screenFetch - Version x.x.x"
+	char *out = app_version("screenfetch --version");
+	return extract_named_version(out, "[4mscreenFetch[0m - Version ");
+}
+
 FetchStat *get_stats() {
 	FetchStat *stats = malloc(STATS_SIZE * sizeof(FetchStat));
 	stats[0].label = "Fastfetch";
@@ -128,5 +134,7 @@ FetchStat *get_stats() {
 	stats[4].version = pfetch();
 	stats[5].label = "UwUfetch";
 	stats[5].version = uwufetch();
+	stats[6].label = "screenFetch";
+	stats[6].version = screenfetch();
 	return stats;
 }
