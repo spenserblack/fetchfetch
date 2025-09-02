@@ -46,7 +46,12 @@ char *pfetch();
  */
 char *uwufetch();
 
-#define STATS_SIZE 6
+/**
+ * Gets screenFetch version information.
+ */
+char *screenfetch();
+
+#define STATS_SIZE 7
 /**
  * Gets all stats.
  */

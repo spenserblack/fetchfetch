@@ -15,7 +15,7 @@ $ fetchfetch
 |                                      | onefetch: 2.22.0
 |                                      | pfetch: Not installed
 |                                      | UwUfetch: Not installed
-|                                      |
+|                                      | screenFetch: 3.9.1
 |                                      |
 |______________________________________|
 ```
@@ -27,12 +27,14 @@ $ fetchfetch
 * [onefetch][onefetch]
 * [pfetch][pfetch]
 * [UwUfetch][uwufetch]
+* [screenFetch][screenfetch]
 
 [fastfetch]: https://github.com/fastfetch-cli/fastfetch
 [neofetch]: https://github.com/dylanaraps/neofetch
 [onefetch]: https://github.com/o2sh/onefetch
 [pfetch]: https://github.com/dylanaraps/pfetch
 [uwufetch]: https://github.com/ad-oliviero/uwufetch
+[screenfetch]: https://github.com/KittyKatt/screenFetch
 
 ## Installation
 
