@@ -7,6 +7,7 @@
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://adamperkowski.dev"><img src="https://avatars.githubusercontent.com/u/75480869?v=4?s=100" width="100px;" alt="Adam Perkowski"/><br /><sub><b>Adam Perkowski</b></sub></a><br /><a href="#platform-adamperkowski" title="Packaging/porting to new platform">📦</a> <a href="#code-adamperkowski" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://dvdznf.xyz/"><img src="https://avatars.githubusercontent.com/u/101937630?v=4?s=100" width="100px;" alt="Dvd-Znf"/><br /><sub><b>Dvd-Znf</b></sub></a><br /><a href="#code-Dvd-Znf" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://mrchicken.nsf-home.ip-dynamic.org"><img src="https://avatars.githubusercontent.com/u/131726447?v=4?s=100" width="100px;" alt="NexusSfan"/><br /><sub><b>NexusSfan</b></sub></a><br /><a href="#code-NexusSfan" title="Code">💻</a></td>
     </tr>
   </tbody>
