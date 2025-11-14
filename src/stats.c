@@ -126,21 +126,17 @@ char *screenfetch() {
 	return extract_named_version(out, "[4mscreenFetch[0m - Version ");
 }
 
-void get_stats(FetchStat stats[STATS_SIZE]) {
-	stats[0].label = "Fastfetch";
-	stats[0].version = fastfetch();
-	stats[1].label = "fetchfetch";
-	stats[1].version = version;
-	stats[2].label = "hyfetch";
-	stats[2].version = hyfetch();
-	stats[3].label = "Neofetch";
-	stats[3].version = neofetch();
-	stats[4].label = "onefetch";
-	stats[4].version = onefetch();
-	stats[5].label = "pfetch";
-	stats[5].version = pfetch();
-	stats[6].label = "UwUfetch";
-	stats[6].version = uwufetch();
-	stats[7].label = "screenFetch";
-	stats[7].version = screenfetch();
+void get_stats(FetchStat stats[static STATS_SIZE]) {
+	const FetchStat data[STATS_SIZE] = {
+		{.label = "Fastfetch", .version = fastfetch()},
+		{.label = "fetchfetch", .version = version},
+		{.label = "hyfetch", .version = hyfetch()},
+		{.label = "Neofetch", .version = neofetch()},
+		{.label = "onefetch", .version = onefetch()},
+		{.label = "pfetch", .version = pfetch()},
+		{.label = "UwUfetch", .version = uwufetch()},
+		{.label = "screenFetch", .version = screenfetch()},
+	};
+
+	memcpy(stats, data, sizeof data);
 }
