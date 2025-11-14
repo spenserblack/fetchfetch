@@ -128,16 +128,15 @@ char *screenfetch() {
 
 void get_stats(FetchStat stats[static STATS_SIZE]) {
 	const FetchStat data[STATS_SIZE] = {
-		{ .label = "Fastfetch",		.version = fastfetch() },
-		{ .label = "fetchfetch",	.version = version },
-		{ .label = "hyfetch",		.version = hyfetch() },
-		{ .label = "Neofetch",		.version = neofetch() },
-		{ .label = "onefetch",		.version = onefetch() },
-		{ .label = "pfetch",		.version = pfetch() },
-		{ .label = "UwUfetch",		.version = uwufetch() },
-		{ .label = "screenFetch",	.version = screenfetch() },
+		{.label = "Fastfetch", .version = fastfetch()},
+		{.label = "fetchfetch", .version = version},
+		{.label = "hyfetch", .version = hyfetch()},
+		{.label = "Neofetch", .version = neofetch()},
+		{.label = "onefetch", .version = onefetch()},
+		{.label = "pfetch", .version = pfetch()},
+		{.label = "UwUfetch", .version = uwufetch()},
+		{.label = "screenFetch", .version = screenfetch()},
 	};
-
 
 	memcpy(stats, data, sizeof data);
 }
