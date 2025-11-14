@@ -135,5 +135,4 @@ void get_stats(FetchStat stats[STATS_SIZE]) {
 	stats[5].version = uwufetch();
 	stats[6].label = "screenFetch";
 	stats[6].version = screenfetch();
-	return;
 }
