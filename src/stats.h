@@ -56,7 +56,7 @@ char *uwufetch();
  */
 char *screenfetch();
 
-#define STATS_SIZE 7
+#define STATS_SIZE 8
 /**
  * Gets all stats.
  */
