@@ -90,6 +90,12 @@ char *fastfetch() {
 	return extract_named_version(out, "fastfetch ");
 }
 
+char *hyfetch() {
+	// NOTE Version in the format "Version: x.x.x"
+	char *out = app_version("hyfetch --version");
+	return extract_named_version(out, "Version: ");
+}
+
 char *neofetch() {
 	// NOTE Version in the format "Neofetch x.x.x"
 	char *out = app_version("neofetch --version");
@@ -125,14 +131,16 @@ void get_stats(FetchStat stats[STATS_SIZE]) {
 	stats[0].version = fastfetch();
 	stats[1].label = "fetchfetch";
 	stats[1].version = version;
-	stats[2].label = "Neofetch";
-	stats[2].version = neofetch();
-	stats[3].label = "onefetch";
-	stats[3].version = onefetch();
-	stats[4].label = "pfetch";
-	stats[4].version = pfetch();
-	stats[5].label = "UwUfetch";
-	stats[5].version = uwufetch();
-	stats[6].label = "screenFetch";
-	stats[6].version = screenfetch();
+	stats[2].label = "hyfetch";
+	stats[2].version = hyfetch();
+	stats[3].label = "Neofetch";
+	stats[3].version = neofetch();
+	stats[4].label = "onefetch";
+	stats[4].version = onefetch();
+	stats[5].label = "pfetch";
+	stats[5].version = pfetch();
+	stats[6].label = "UwUfetch";
+	stats[6].version = uwufetch();
+	stats[7].label = "screenFetch";
+	stats[7].version = screenfetch();
 }

@@ -9,13 +9,13 @@ Fetch information about your `*fetch` tools.
 ```console
 $ fetchfetch
  ______________________________________
-|                                      | Fastfetch: 2.33.0
+|                                      | Fastfetch: 2.55.0
 |  >_                                  | fetchfetch: 1.1.0
-|                                      | Neofetch: 7.1.0
-|                                      | onefetch: 2.22.0
+|                                      | hyfetch: 2.0.4
+|                                      | Neofetch: Not installed
+|                                      | onefetch: Not installed
 |                                      | pfetch: Not installed
-|                                      | UwUfetch: Not installed
-|                                      | screenFetch: 3.9.1
+|                                      | UwUfetch: 2.1
 |                                      |
 |______________________________________|
 ```
@@ -23,6 +23,7 @@ $ fetchfetch
 ## Supported `*fetch` tools
 
 * [Fastfetch][fastfetch]
+* [Hyfetch][hyfetch]
 * [Neofetch][neofetch]
 * [onefetch][onefetch]
 * [pfetch][pfetch]
@@ -30,6 +31,7 @@ $ fetchfetch
 * [screenFetch][screenfetch]
 
 [fastfetch]: https://github.com/fastfetch-cli/fastfetch
+[hyfetch]: https://github.com/hykilpikonna/hyfetch
 [neofetch]: https://github.com/dylanaraps/neofetch
 [onefetch]: https://github.com/o2sh/onefetch
 [pfetch]: https://github.com/dylanaraps/pfetch
