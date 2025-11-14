@@ -22,7 +22,7 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-	FetchStat *stats;
+	FetchStat stats[STATS_SIZE];
 	bool ok = parse_args(argc, argv);
 	const char *label;
 	int label_len;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	stats = get_stats();
+	get_stats(stats);
 	for (int line_index = 0; line_index < ART_HEIGHT || line_index < STATS_SIZE;
 		 line_index++) {
 		if (line_index < ART_HEIGHT) {

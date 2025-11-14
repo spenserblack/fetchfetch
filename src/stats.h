@@ -55,6 +55,6 @@ char *screenfetch();
 /**
  * Gets all stats.
  */
-FetchStat *get_stats();
+void get_stats(FetchStat[]);
 
 #endif

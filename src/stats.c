@@ -120,8 +120,7 @@ char *screenfetch() {
 	return extract_named_version(out, "[4mscreenFetch[0m - Version ");
 }
 
-FetchStat *get_stats() {
-	FetchStat *stats = malloc(STATS_SIZE * sizeof(FetchStat));
+void get_stats(FetchStat stats[STATS_SIZE]) {
 	stats[0].label = "Fastfetch";
 	stats[0].version = fastfetch();
 	stats[1].label = "fetchfetch";
@@ -136,5 +135,5 @@ FetchStat *get_stats() {
 	stats[5].version = uwufetch();
 	stats[6].label = "screenFetch";
 	stats[6].version = screenfetch();
-	return stats;
+	return;
 }
