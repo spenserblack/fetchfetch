@@ -27,6 +27,11 @@ typedef struct {
 char *fastfetch();
 
 /**
+ * Gets Hyfetch version information.
+ */
+char *hyfetch();
+
+/**
  * Gets Neofetch version information.
  */
 char *neofetch();
