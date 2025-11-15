@@ -1,5 +1,7 @@
 changelog:
   exclude:
+    authors:
+      - allcontributors
     labels:
       - release-ignore
 
