@@ -20,123 +20,132 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *app_version_fallback = "Not installed";
+static const char app_version_fallback[STATS_VERSION_SIZE] = "Not installed\0";
 
 /**
- * Calls a shell command and returns the output as a string.
+ * Calls a shell command and copies the output to a buffer.
  *
  * Falls back to "Not installed" if the command fails.
  */
-char *app_version(const char *command) {
-	FILE *fp;
+static void app_version(const char *restrict command, char buf[static STATS_VERSION_SIZE]) {
 	char redirected_command[50];
-	// NOTE 50 should be more than enough space for version info.
-	char buffer[50];
-	bool failed_to_read;
 
 	strcpy(redirected_command, command);
 	strcat(redirected_command, " 2>/dev/null");
 
-	fp = popen(redirected_command, "r");
+	FILE *fp = popen(redirected_command, "r");
 	if (fp == NULL) {
-		return app_version_fallback;
+		strcpy(buf, app_version_fallback);
+		return;
 	}
 
-	failed_to_read = fgets(buffer, sizeof(buffer), fp) == NULL;
+	const bool failed_to_read = fgets(buf, STATS_VERSION_SIZE, fp) == NULL;
 	pclose(fp);
 
-	if (failed_to_read || strlen(buffer) == 0) {
-		return app_version_fallback;
+	if (failed_to_read || buf[0] == '\0') {
+		strcpy(buf, app_version_fallback);
 	}
-
-	return strdup(buffer);
 }
 
 /**
  * Checks if a character is a boundary character.
  */
-bool is_boundary(char c) { return c == ' ' || c == '\n'; }
+static bool is_boundary(const char c) { return c == ' ' || c == '\n'; }
+
+static const char prefix_not_found[STATS_VERSION_SIZE] = "<unexpected version output>\0";
 
 /**
- * Splits outputs in the format `"Appname x.y.z\n"` into `"x.y.z"`.
+ * Matches the provided prefix from the beginning of the version_info string, and extracts
+ * the version that follows it until a boundary character is found into buf.
  */
-char *extract_named_version(const char *version_info, const char *prefix) {
-	int start;
-	int end;
-	int len;
-	int prefix_len = strlen(prefix);
+static void extract_named_version(const char *version_info, const char *restrict prefix, const unsigned int prefix_len, char buf[static STATS_VERSION_SIZE]) {
+	unsigned int start;
+	unsigned int end;
+	// unsigned int len;
 
-	if (version_info == app_version_fallback) {
-		return app_version_fallback;
+	if (strcmp(version_info, app_version_fallback) == 0) {
+		strcpy(buf, app_version_fallback);
+		return;
 	}
 
-	len = strlen(version_info);
-	for (start = 0; version_info[start] != '\0' &&
-					strncmp(version_info + start, prefix, prefix_len) != 0;
-		 start++)
-		;
-	if (start >= len) {
-		return NULL; // Prefix not found
+	for (start = 0; prefix[start] != '\0'; ++start) {
+		if (version_info[start] != prefix[start]) {
+			strcpy(buf, prefix_not_found);
+			return;
+		}
 	}
-	start += prefix_len;
-	for (end = start; end < len && !is_boundary(version_info[end]); end++)
-		;
-	return strndup(version_info + start, end - start);
+
+	strncpy(buf, version_info + start, STATS_VERSION_SIZE - 1);
+	buf[STATS_VERSION_SIZE - 1] = '\0';
 }
 
-char *fastfetch() {
+void fastfetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "fastfetch x.x.x (ARCH)"
-	char *out = app_version("fastfetch --version");
-	return extract_named_version(out, "fastfetch ");
+	const char prefix[] = "fastfetch ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("fastfetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-char *hyfetch() {
+static void fetchfetch(char buf[static STATS_VERSION_SIZE]) {
+	strcpy(buf, version);
+}
+
+void hyfetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "Version: x.x.x"
-	char *out = app_version("hyfetch --version");
-	return extract_named_version(out, "Version: ");
+	const char prefix[] = "Version: ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("hyfetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-char *neofetch() {
+void neofetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "Neofetch x.x.x"
-	char *out = app_version("neofetch --version");
-	return extract_named_version(out, "Neofetch ");
+	const char prefix[] = "Neofetch ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("neofetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-char *onefetch() {
+void onefetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "onefetch x.x.x"
-	char *out = app_version("onefetch --version");
-	return extract_named_version(out, "onefetch ");
+	const char prefix[] = "onefetch ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("onefetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-char *pfetch() {
+void pfetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "pfetch x.x.x"
-	char *out = app_version("pfetch --version");
-	return extract_named_version(out, "pfetch ");
+	const char prefix[] = "pfetch ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("pfetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-char *uwufetch() {
-	// NOTE Version in the format "UwUfetch version x.x"
-	char *out = app_version("uwufetch --version");
-	return extract_named_version(out, "UwUfetch version ");
-}
-
-char *screenfetch() {
+void screenfetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "screenFetch - Version x.x.x"
-	char *out = app_version("screenfetch --version");
-	return extract_named_version(out, "[4mscreenFetch[0m - Version ");
+	const char prefix[] = "[4mscreenFetch[0m - Version ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("screenfetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-void get_stats(FetchStat stats[static STATS_SIZE]) {
-	const FetchStat data[STATS_SIZE] = {
-		{.label = "Fastfetch", .version = fastfetch()},
-		{.label = "fetchfetch", .version = version},
-		{.label = "hyfetch", .version = hyfetch()},
-		{.label = "Neofetch", .version = neofetch()},
-		{.label = "onefetch", .version = onefetch()},
-		{.label = "pfetch", .version = pfetch()},
-		{.label = "UwUfetch", .version = uwufetch()},
-		{.label = "screenFetch", .version = screenfetch()},
-	};
-
-	memcpy(stats, data, sizeof data);
+void uwufetch(char buf[static STATS_VERSION_SIZE]) {
+	// NOTE Version in the format "UwUfetch version x.x"
+	const char prefix[] = "UwUfetch version ";
+	char tmp[STATS_VERSION_SIZE];
+	app_version("uwufetch --version", tmp);
+	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
+
+const FetchStat stats[STATS_SIZE] = {
+	{.label = "Fastfetch", .fetcher = fastfetch},
+	{.label = "fetchfetch", .fetcher = fetchfetch},
+	{.label = "hyfetch", .fetcher = hyfetch},
+	{.label = "Neofetch", .fetcher = neofetch},
+	{.label = "onefetch", .fetcher = onefetch},
+	{.label = "pfetch", .fetcher = pfetch},
+	{.label = "screenFetch", .fetcher = screenfetch},
+	{.label = "UwUfetch", .fetcher = uwufetch},
+};
