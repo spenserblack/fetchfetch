@@ -49,21 +49,17 @@ app_version(const char *restrict command, char buf[static STATS_VERSION_SIZE]) {
 
 	char c;
 
-	// NOTE Trim trailing newlines.
+	// NOTE Trim at end of version string.
 	for (unsigned char i = 0; i < STATS_VERSION_SIZE && (c = buf[i]) != '\0'; ++i) {
 		switch (c) {
 		case '\r':
 		case '\n':
+		case ' ':
 			buf[i] = '\0';
 			return;
 		}
 	}
 }
-
-/**
- * Checks if a character is a boundary character.
- */
-static bool is_boundary(const char c) { return c == ' ' || c == '\n'; }
 
 static const char prefix_not_found[STATS_VERSION_SIZE] =
 	"<unexpected version output>\0";
