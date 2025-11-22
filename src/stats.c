@@ -45,6 +45,18 @@ static void app_version(const char *restrict command, char buf[static STATS_VERS
 	if (failed_to_read || buf[0] == '\0') {
 		strcpy(buf, app_version_fallback);
 	}
+
+	char c;
+
+	// NOTE Trim trailing newlines.
+	for (unsigned char i = 0; i < STATS_VERSION_SIZE && (c = buf[i]) != '\0'; ++i) {
+		switch (c) {
+		case '\r':
+		case '\n':
+			buf[i] = '\0';
+			return;
+		}
+	}
 }
 
 /**
