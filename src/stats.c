@@ -78,7 +78,6 @@ static void extract_named_version(
 ) {
 	unsigned int start;
 	unsigned int end;
-	// unsigned int len;
 
 	if (strcmp(version_info, app_version_fallback) == 0) {
 		strcpy(buf, app_version_fallback);
