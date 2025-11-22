@@ -27,7 +27,8 @@ static const char app_version_fallback[STATS_VERSION_SIZE] = "Not installed\0";
  *
  * Falls back to "Not installed" if the command fails.
  */
-static void app_version(const char *restrict command, char buf[static STATS_VERSION_SIZE]) {
+static void
+app_version(const char *restrict command, char buf[static STATS_VERSION_SIZE]) {
 	char redirected_command[50];
 
 	strcpy(redirected_command, command);
@@ -64,13 +65,17 @@ static void app_version(const char *restrict command, char buf[static STATS_VERS
  */
 static bool is_boundary(const char c) { return c == ' ' || c == '\n'; }
 
-static const char prefix_not_found[STATS_VERSION_SIZE] = "<unexpected version output>\0";
+static const char prefix_not_found[STATS_VERSION_SIZE] =
+	"<unexpected version output>\0";
 
 /**
- * Matches the provided prefix from the beginning of the version_info string, and extracts
- * the version that follows it until a boundary character is found into buf.
+ * Matches the provided prefix from the beginning of the version_info string, and
+ * extracts the version that follows it until a boundary character is found into buf.
  */
-static void extract_named_version(const char *version_info, const char *restrict prefix, const unsigned int prefix_len, char buf[static STATS_VERSION_SIZE]) {
+static void extract_named_version(
+	const char *version_info, const char *restrict prefix,
+	const unsigned int prefix_len, char buf[static STATS_VERSION_SIZE]
+) {
 	unsigned int start;
 	unsigned int end;
 	// unsigned int len;
@@ -99,9 +104,7 @@ void fastfetch(char buf[static STATS_VERSION_SIZE]) {
 	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
 }
 
-static void fetchfetch(char buf[static STATS_VERSION_SIZE]) {
-	strcpy(buf, version);
-}
+static void fetchfetch(char buf[static STATS_VERSION_SIZE]) { strcpy(buf, version); }
 
 void hyfetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "Version: x.x.x"
