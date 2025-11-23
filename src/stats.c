@@ -142,7 +142,7 @@ void pfetch(char buf[static STATS_VERSION_SIZE]) {
 
 void screenfetch(char buf[static STATS_VERSION_SIZE]) {
 	// NOTE Version in the format "screenFetch - Version x.x.x"
-	const char prefix[] = "[4mscreenFetch[0m - Version ";
+	const char prefix[] = "\e[4mscreenFetch\e[0m - Version ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("screenfetch --version", tmp);
 	extract_named_version(tmp, prefix, buf);
