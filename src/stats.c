@@ -79,7 +79,7 @@ static const char prefix_not_found[STATS_VERSION_SIZE] =
  */
 static void extract_named_version(
 	const char *version_info, const char *restrict prefix,
-	const unsigned int prefix_len, char buf[static STATS_VERSION_SIZE]
+	char buf[static STATS_VERSION_SIZE]
 ) {
 	unsigned int start;
 
@@ -104,7 +104,7 @@ void fastfetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "fastfetch ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("fastfetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 static void fetchfetch(char buf[static STATS_VERSION_SIZE]) { strcpy(buf, version); }
@@ -114,7 +114,7 @@ void hyfetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "Version: ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("hyfetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 void neofetch(char buf[static STATS_VERSION_SIZE]) {
@@ -122,7 +122,7 @@ void neofetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "Neofetch ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("neofetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 void onefetch(char buf[static STATS_VERSION_SIZE]) {
@@ -130,7 +130,7 @@ void onefetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "onefetch ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("onefetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 void pfetch(char buf[static STATS_VERSION_SIZE]) {
@@ -138,7 +138,7 @@ void pfetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "pfetch ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("pfetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 void screenfetch(char buf[static STATS_VERSION_SIZE]) {
@@ -146,7 +146,7 @@ void screenfetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "[4mscreenFetch[0m - Version ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("screenfetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 void uwufetch(char buf[static STATS_VERSION_SIZE]) {
@@ -154,7 +154,7 @@ void uwufetch(char buf[static STATS_VERSION_SIZE]) {
 	const char prefix[] = "UwUfetch version ";
 	char tmp[STATS_VERSION_SIZE];
 	app_version("uwufetch --version", tmp);
-	extract_named_version(tmp, prefix, (sizeof(prefix) / sizeof(char)), buf);
+	extract_named_version(tmp, prefix, buf);
 }
 
 const FetchStat stats[STATS_SIZE] = {
