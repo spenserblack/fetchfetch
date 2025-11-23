@@ -96,7 +96,6 @@ static void extract_named_version(
 	}
 
 	versioncpy(buf, version_info + start);
-	buf[STATS_VERSION_SIZE - 1] = '\0';
 }
 
 void fastfetch(char buf[static STATS_VERSION_SIZE]) {
