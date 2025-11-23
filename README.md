@@ -27,16 +27,16 @@ $ fetchfetch
 * [Neofetch][neofetch]
 * [onefetch][onefetch]
 * [pfetch][pfetch]
-* [UwUfetch][uwufetch]
 * [screenFetch][screenfetch]
+* [UwUfetch][uwufetch]
 
 [fastfetch]: https://github.com/fastfetch-cli/fastfetch
 [hyfetch]: https://github.com/hykilpikonna/hyfetch
 [neofetch]: https://github.com/dylanaraps/neofetch
 [onefetch]: https://github.com/o2sh/onefetch
 [pfetch]: https://github.com/dylanaraps/pfetch
-[uwufetch]: https://github.com/ad-oliviero/uwufetch
 [screenfetch]: https://github.com/KittyKatt/screenFetch
+[uwufetch]: https://github.com/ad-oliviero/uwufetch
 
 ## Installation
 
