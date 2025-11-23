@@ -46,19 +46,28 @@ app_version(const char *restrict command, char buf[static STATS_VERSION_SIZE]) {
 	if (failed_to_read || buf[0] == '\0') {
 		strcpy(buf, app_version_fallback);
 	}
+}
 
+/**
+ * Copies specifically version text, ending not just at a null character, but also at a
+ * space or a newline.
+ */
+static void versioncpy(char *restrict dest, const char *restrict src) {
 	char c;
-
-	// NOTE Trim at end of version string.
-	for (unsigned char i = 0; i < STATS_VERSION_SIZE && (c = buf[i]) != '\0'; ++i) {
+	// NOTE As long as STATS_VERSION_SIZE < 255, an unsigned char is OK.
+	unsigned char i;
+	for (i = 0; i < STATS_VERSION_SIZE - 1 && (c = src[i]) != '\0'; ++i) {
 		switch (c) {
 		case '\r':
 		case '\n':
 		case ' ':
-			buf[i] = '\0';
-			return;
+			goto loopend;
+		default:
+			dest[i] = c;
 		}
 	}
+loopend:
+	dest[i] = '\0';
 }
 
 static const char prefix_not_found[STATS_VERSION_SIZE] =
@@ -86,7 +95,7 @@ static void extract_named_version(
 		}
 	}
 
-	strncpy(buf, version_info + start, STATS_VERSION_SIZE - 1);
+	versioncpy(buf, version_info + start);
 	buf[STATS_VERSION_SIZE - 1] = '\0';
 }
 
