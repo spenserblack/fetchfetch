@@ -16,50 +16,51 @@
 #ifndef FETCH_FETCH_STATS_H
 #define FETCH_FETCH_STATS_H
 
+// NOTE 50 should be more than enough space for version info.
+#define STATS_VERSION_SIZE 50
+
 typedef struct {
 	const char *label;
-	const char *version;
+	void (*const fetcher)(char[static STATS_VERSION_SIZE]);
 } FetchStat;
 
 /**
  * Gets Fastfetch version information.
  */
-char *fastfetch();
+void fastfetch(char buf[static STATS_VERSION_SIZE]);
 
 /**
  * Gets Hyfetch version information.
  */
-char *hyfetch();
+void hyfetch(char buf[static STATS_VERSION_SIZE]);
 
 /**
  * Gets Neofetch version information.
  */
-char *neofetch();
+void neofetch(char buf[static STATS_VERSION_SIZE]);
 
 /**
  * Gets onefetch version information.
  */
-char *onefetch();
+void onefetch(char buf[static STATS_VERSION_SIZE]);
 
 /**
  * Gets pfetch version information.
  */
-char *pfetch();
+void pfetch(char buf[static STATS_VERSION_SIZE]);
 
 /**
  * Gets UwUfetch version information.
  */
-char *uwufetch();
+void uwufetch(char buf[static STATS_VERSION_SIZE]);
 
 /**
  * Gets screenFetch version information.
  */
-char *screenfetch();
+void screenfetch(char buf[static STATS_VERSION_SIZE]);
 
 #define STATS_SIZE 8
-/**
- * Gets all stats.
- */
-void get_stats(FetchStat stats[STATS_SIZE]);
+
+extern const FetchStat stats[STATS_SIZE];
 
 #endif

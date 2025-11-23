@@ -15,4 +15,4 @@
  */
 #include "version.h"
 
-const char *version = "1.1.1";
+const char *version = "2.0.0";

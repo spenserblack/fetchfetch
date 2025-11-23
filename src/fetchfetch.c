@@ -22,9 +22,9 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-	FetchStat stats[STATS_SIZE];
 	bool ok = parse_args(argc, argv);
 	const char *label;
+	char version_buf[STATS_VERSION_SIZE];
 	int label_len;
 	int pad_iter;
 
@@ -40,7 +40,6 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	get_stats(stats);
 	for (int line_index = 0; line_index < ART_HEIGHT || line_index < STATS_SIZE;
 		 line_index++) {
 		if (line_index < ART_HEIGHT) {
@@ -53,6 +52,7 @@ int main(int argc, char *argv[]) {
 
 		// NOTE We skip a line because it looks a little better.
 		if (line_index != 0 && line_index <= STATS_SIZE) {
+			stats[line_index - 1].fetcher(version_buf);
 			printf(" %s:", label = stats[line_index - 1].label);
 			if (right_pad != -1) {
 				label_len = strlen(label);
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
 			} else {
 				putchar(' ');
 			}
-			printf("%s", stats[line_index - 1].version);
+			printf("%s", version_buf);
 		}
 		printf("\n");
 	}
